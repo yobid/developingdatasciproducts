@@ -1,0 +1,38 @@
+---
+title: "French Pays Basque surf spots"
+author: "Yoan Bidart"
+date: "9/27/2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## French Pays Basque surf spots
+
+In the following map you can find the most famous surf spots in Pays Basque. 
+
+## Surf spots Map
+
+```{r, comment=""}
+library(leaflet)
+spots <- data.frame(name=c("Hendaye", "Guethary", "Bidart", "Ilbarritz", "Biarritz", "Anglet-Corsaires", "Anglet-Madrague"),
+                    lat=c(43.375479, 43.422642, 43.436018, 43.460297, 43.485518, 43.507517, 43.511337) ,
+                    lng=c(-1.766073,-1.619347, -1.597279, -1.578734, -1.558931, -1.538160, -1.535283) 
+                    )
+surfIcon <- makeIcon(iconUrl = "https://icon-icons.com/icons2/645/PNG/512/skate_icon-icons.com_59617.png", iconWidth = 40, iconHeight=40, iconAnchorX = 40/2, iconAnchorY = 40/2)
+
+map1 <- spots %>%
+        leaflet() %>%
+        addTiles() %>%
+        addMarkers(lat=spots$lat, lng=spots$lng, icon=surfIcon, popup=spots$name)
+
+map1
+```
+
+## Thank you for your attention
+
+I hope you liked the map !
+
+
